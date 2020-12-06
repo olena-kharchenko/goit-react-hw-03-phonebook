@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
 import Section from './components/Section';
-import Form from './components/Form';
+import MyForm from './components/Form';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
 
@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <Form onSubmit={this.addContact} contacts={contacts} />
+          <MyForm onSubmit={this.addContact} contacts={contacts} />
         </Section>
         <Section title="Contacts">
           <Filter value={filter} onChange={this.changeFilter} />

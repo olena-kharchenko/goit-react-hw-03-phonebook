@@ -1,8 +1,25 @@
 import { Component } from 'react';
+// import { Formik, Field, Form, ErrorMessage } from 'formik';
+// import * as Yup from 'yup';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
 import PropTypes from 'prop-types';
 import s from './Form.module.css';
 
-class Form extends Component {
+// const validationSchema = Yup.object({
+//   name: Yup.string()
+//     .min(3, 'Please enter between 3 and 15 characters')
+//     .max(15, 'Please enter between 3 and 15 characters')
+//     .required('Required'),
+//   number: Yup.number()
+//     .positive()
+//     .min(3, 'Please enter 10 digits')
+//     .max(10, 'Please enter 10 digits')
+//     .required('Required'),
+// });
+
+class MyForm extends Component {
   state = {
     name: '',
     number: '',
@@ -17,10 +34,6 @@ class Form extends Component {
         number: PropTypes.string.isRequired,
       }),
     ),
-  };
-
-  handleChange = e => {
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   contactMatching = () => {
@@ -49,6 +62,10 @@ class Form extends Component {
     }
   };
 
+  handleChange = e => {
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+  };
+
   handleSubmit = e => {
     const { name, number } = this.state;
 
@@ -62,32 +79,41 @@ class Form extends Component {
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit} className={s.form}>
-        <label className={s.label}>
+        <label>
           Name
           <input
             type="text"
             name="name"
-            value={this.state.name}
+            value={name}
             placeholder="Rosie Simpson"
             onChange={this.handleChange}
             className={s.input}
           />
         </label>
-
-        <label className={s.label}>
+        <label>
+          Number
+          <PhoneInput
+            country={'ua'}
+            value={number}
+            placeholder="+380 (66) 123-4567"
+            onChange={number => this.setState({ number })}
+          />
+        </label>
+        {/* <label className={s.label}>
           Number
           <input
             type="tel"
             name="number"
             value={this.state.number}
             placeholder="459-12-56"
-            // pattern="\+3\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
             onChange={this.handleChange}
             className={s.input}
           />
-        </label>
+        </label> */}
         <button type="submit" className={s.button}>
           Add contact
         </button>
@@ -96,4 +122,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default MyForm;

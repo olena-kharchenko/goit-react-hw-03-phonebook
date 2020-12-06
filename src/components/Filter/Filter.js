@@ -5,7 +5,13 @@ function Filter({ value, onChange }) {
   return (
     <label className={s.filter}>
       Find contacts by name
-      <input type="text" value={value} onChange={onChange} />
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder="Enter name to search"
+        className={s.input}
+      />
     </label>
   );
 }
