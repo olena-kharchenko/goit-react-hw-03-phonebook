@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
+import Container from './components/Container';
 import Section from './components/Section';
 import MyForm from './components/Form';
 import Filter from './components/Filter';
@@ -8,10 +9,10 @@ import ContactList from './components/ContactList';
 class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      { id: 'id-1', name: 'Elon Mask', number: '10664888778' },
+      { id: 'id-2', name: 'Lena Kharchenko', number: '380664969795' },
+      { id: 'id-3', name: 'Bill Gates', number: '10662475771' },
+      { id: 'id-4', name: 'Mark Zuckerberg ', number: '10625884318' },
     ],
     filter: '',
   };
@@ -47,12 +48,30 @@ class App extends Component {
     }));
   };
 
+  componentDidMount() {
+    console.log('componentDidMount');
+
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate');
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Обновились контакты');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter, contacts } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
-      <>
-        <Section title="Phonebook">
+      <Container>
+        <Section title="Cosmic Phonebook">
           <MyForm onSubmit={this.addContact} contacts={contacts} />
         </Section>
         <Section title="Contacts">
@@ -62,7 +81,7 @@ class App extends Component {
             onDeleteContact={this.deleteContact}
           />
         </Section>
-      </>
+      </Container>
     );
   }
 }

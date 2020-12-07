@@ -16,7 +16,7 @@ function ContactList({ contacts, onDeleteContact }) {
             onClick={() => onDeleteContact(id)}
             className={s.button}
           >
-            Delete
+            <span className={s.times}>&times;</span>
           </button>
         </li>
       ))}

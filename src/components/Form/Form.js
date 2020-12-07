@@ -1,23 +1,10 @@
 import { Component } from 'react';
-// import { Formik, Field, Form, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
+
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import PropTypes from 'prop-types';
 import s from './Form.module.css';
-
-// const validationSchema = Yup.object({
-//   name: Yup.string()
-//     .min(3, 'Please enter between 3 and 15 characters')
-//     .max(15, 'Please enter between 3 and 15 characters')
-//     .required('Required'),
-//   number: Yup.number()
-//     .positive()
-//     .min(3, 'Please enter 10 digits')
-//     .max(10, 'Please enter 10 digits')
-//     .required('Required'),
-// });
 
 class MyForm extends Component {
   state = {
@@ -89,7 +76,7 @@ class MyForm extends Component {
             type="text"
             name="name"
             value={name}
-            placeholder="Rosie Simpson"
+            placeholder="Elon Mask"
             onChange={this.handleChange}
             className={s.input}
           />
@@ -97,26 +84,17 @@ class MyForm extends Component {
         <label>
           Number
           <PhoneInput
-            country={'ua'}
+            country={'us'}
             value={number}
-            placeholder="+380 (66) 123-4567"
+            placeholder="10664888778"
             onChange={number => this.setState({ number })}
           />
         </label>
-        {/* <label className={s.label}>
-          Number
-          <input
-            type="tel"
-            name="number"
-            value={this.state.number}
-            placeholder="459-12-56"
-            onChange={this.handleChange}
-            className={s.input}
-          />
-        </label> */}
-        <button type="submit" className={s.button}>
-          Add contact
-        </button>
+        <div className={s.buttonWrapper}>
+          <button type="submit" className={s.button}>
+            Add contact
+          </button>
+        </div>
       </form>
     );
   }
